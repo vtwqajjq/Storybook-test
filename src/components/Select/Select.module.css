@@ -1,0 +1,22 @@
+.mainOption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 122px;
+    height: 20px;
+    background-color: sandybrown;
+}
+
+.mainOption > button {
+    border-radius: 50%;
+    border: none;
+    font-size: 6px;
+}
+
+.selectItem {
+    text-align: right;
+    width: 120px;
+    border: 1px solid gold;
+    cursor: pointer;
+    font-size: 20px;
+}
