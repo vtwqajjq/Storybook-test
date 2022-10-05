@@ -1,14 +1,19 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
-import Rating from "./components/Rating/Rating";
 import Accordion from "./components/Accordion/Accordion";
-import {OnOff} from "./components/OnOff/OnOff";
-import {stat} from "fs";
-import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
-import UncontrolledRating from "./components/UncontrolledRating/UncontrolledRating";
-import {logDOM} from "@testing-library/react";
-import {Select} from "./components/Select/Select";
+import {StateType} from "./components/Accordion/Accordion.test";
 
+type ActionType = {
+    type: string
+}
+
+export const reducer = (state: StateType, action: ActionType):StateType => {
+    if (action.type==='TOGGLE-COLLAPSED') {
+        return {...state,
+                collapsed:true}
+    }
+    return state
+}
 
 function App() {
     /*const [status, setStatus] = useState(false)
@@ -63,8 +68,11 @@ function App() {
     console.log(nums.reduce((acc,el)=> acc > el ? acc : el))
 
 */
-    let [collapsed, setCollapsed] = useState(false)
-    let [currentSelectValue, setCurrentSelectValue] = useState('')
+
+    let [collapsed, dispatch] = useReducer(reducer, {collapsed: false})
+
+    //for Select component:
+    /*let [currentSelectValue, setCurrentSelectValue] = useState('')
 
     const itemsArray = [
         {title: 'Minsk', value: 1},
@@ -79,6 +87,10 @@ function App() {
 
     const collapseSetter = () => {
         setCollapsed(!collapsed)
+    }*/
+
+    const collapseDiv = () => {
+        dispatch({type: 'TOGGLE-COLLAPSED'})
     }
 
     return (
@@ -87,8 +99,7 @@ function App() {
             <PageTitle title = 'surr' />
             <h2>Article 1</h2>
             <Rating rating = {3}/>
-            <Accordion name={'Menu'} collapsed = {true}/>
-            <Accordion name={'Vote'} collapsed = {false}/>
+
             <h2>Article 2</h2>
             <Rating rating = {4} />
             <Rating rating = {1} />
@@ -99,11 +110,12 @@ function App() {
             <UncontrolledAccordion name={'Menu'}/>
             <UncontrolledAccordion name={'Vote'} />
             <UncontrolledRating />*/}
-            <div>
+            {/*<div>
                 <Select status={collapsed} value={currentSelectValue} onChangeHandler={selectChanger}
                         onClickHandler={collapseSetter}
                         items={itemsArray}/>
-            </div>
+            </div>*/}
+            <Accordion name={'Menu'} collapsed={collapsed} collapseDiv={collapseDiv}/>
         </div>
     );
 }

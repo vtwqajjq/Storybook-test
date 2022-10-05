@@ -1,17 +1,22 @@
 import React from "react";
+import {StateType} from "./Accordion.test";
 
 type AccordionPropsType = {
-    name: string,
-    collapsed: boolean
+    name: string
+    collapsed: StateType
+    collapseDiv: () => void
 }
 
 type AccordionTitlePropsType = {
     name: string
+    collapseDiv: () => void
 }
+
+
 
 function AccordionTitle(props: AccordionTitlePropsType) {
     return (
-        <h3>{props.name}</h3>
+        <h3 onClick={props.collapseDiv}>{props.name}</h3>
     )
 }
 
@@ -28,12 +33,11 @@ function AccordionBody() {
 function Accordion(props: AccordionPropsType) {
     return (
         <div>
-            <AccordionTitle name={props.name} />
-            {!props.collapsed && <AccordionBody />}
+            <AccordionTitle name={props.name} collapseDiv={props.collapseDiv}/>
+            {!props.collapsed && <AccordionBody/>}
         </div>
 
     )
-
 }
 
 export default Accordion;

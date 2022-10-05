@@ -5,6 +5,7 @@
     width: 122px;
     height: 20px;
     background-color: sandybrown;
+    border: 1px solid black;
 }
 
 .mainOption > button {
@@ -16,7 +17,7 @@
 .selectItem {
     text-align: right;
     width: 120px;
-    border: 1px solid gold;
+    border: 1px solid sandybrown;
     cursor: pointer;
     font-size: 20px;
 }

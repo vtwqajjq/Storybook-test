@@ -8,3 +8,6 @@ export default {
     component: Select,
 }
 
+/*
+export const SelectStory = () => <Select status={collapsed} value={} onChangeHandler={} onClickHandler={} items={} />
+*/
